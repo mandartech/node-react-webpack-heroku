@@ -1,0 +1,29 @@
+{
+  "name": "node-react-webpack-heroku",
+  "version": "1.0.0",
+  "description": "A minimal boilerplate with node.js serving react.js UI and deployed to heroku",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mandartech/node-react-webpack-heroku.git"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "react.js",
+    "heroku",
+    "webpack"
+  ],
+  "author": "manan@mandartech.in",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mandartech/node-react-webpack-heroku/issues"
+  },
+  "homepage": "https://github.com/mandartech/node-react-webpack-heroku#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
