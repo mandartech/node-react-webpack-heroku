@@ -18,6 +18,9 @@ app.get('/main.js', function(req, res) {
   });
 });
 
+var imagesPath = path.join(__dirname, './ui/public/images');
+app.use('/images', express.static(imagesPath));
+
 var server = http.createServer(app);
 var port = process.env.PORT || 3000;
 server.listen(port, function() {
