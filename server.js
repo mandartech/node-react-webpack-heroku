@@ -10,19 +10,20 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, './ui/public/index.html'));
 });
 
-app.get('/main.js', function(req, res) {
-  const filename = 'public/main.js';
+app.get('/(*).js.gz', function(req, res) {
+  const filename = 'public/'+ req.params[0].split("/").pop() + '.js.gz';
+  res.append('Content-Encoding', 'gzip');
   res.append('Content-Type', 'application/javascript');
   res.sendFile(filename, {
     root: path.join(__dirname, './ui/')
   });
 });
 
-app.get('/main.js.map', function(req, res) {
-  const filename = 'public/main.js.map';
+app.get('/(*).js.map', function (req, res) {
+  const filename = 'public/'+ req.params[0].split("/").pop() + '.js.map';
   res.append('Content-Type', 'application/javascript');
   res.sendFile(filename, {
-    root: path.join(__dirname, './ui/')
+    root: path.join(__dirname, './ui')
   });
 });
 

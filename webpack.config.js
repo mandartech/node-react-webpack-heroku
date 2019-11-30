@@ -1,6 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const HtmlWebpackChangeAssetsExtensionPlugin = require('html-webpack-change-assets-extension-plugin');
 
 module.exports = {
   mode: "production",
@@ -23,7 +26,19 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './ui/src/index.html.template',
+      jsExtension: ".gz"
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      minRatio: 0.8,
+      test: /\.(js)$/,
+      cache: true,
+      deleteOriginalAssets: true,
+    }),
+    new HtmlWebpackChangeAssetsExtensionPlugin()
   ],
   optimization: {
     moduleIds: 'hashed',
