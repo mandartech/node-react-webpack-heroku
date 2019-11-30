@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
-  devtool: "source-map",
+  mode: "production",
+  // devtool: "source-map",
   entry: './ui/src/app.js',
   output: {
     path: path.resolve(__dirname, 'ui/public/'),
-    filename: '[name].js'
+    filename: '[name].[contenthash].js'
   },
   resolve: { extensions: [".jsx", ".js", ".css"] },
   module: {
@@ -20,5 +21,21 @@ module.exports = {
         ],
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin()
+  ],
+  optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  },
 };
