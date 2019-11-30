@@ -18,6 +18,14 @@ app.get('/main.js', function(req, res) {
   });
 });
 
+app.get('/main.js.map', function(req, res) {
+  const filename = 'public/main.js.map';
+  res.append('Content-Type', 'application/javascript');
+  res.sendFile(filename, {
+    root: path.join(__dirname, './ui/')
+  });
+});
+
 var imagesPath = path.join(__dirname, './ui/public/images');
 app.use('/images', express.static(imagesPath));
 
